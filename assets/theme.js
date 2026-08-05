@@ -120,19 +120,54 @@ function generateProducts(){
 let allProducts = generateProducts();
 
 // ==== Productos importados del usuario (placeholders y precios sugeridos) ====
-const userRaw = [
-  'Soporte Para Portatil Con Ventilador', 'Parlante Inteligente Alexa Radio Bluetooth', 'Batidora Scarlett', 'Teclado Rgb Transparente T10',
-  'Audifonos Inalambricos Ultra Pods Max', 'Audifonos Inalambricos M10', 'Audifonos Inalambricos K11', 'Mouse Cw905 Pink',
-  'Manos Libres Tipo Iphone Original 3.5', 'Cargador Xiaomi V8', 'Combo Teclado Mouse Kt 988', 'Super Combo Smart Watch airpods Parlante',
-  'Audifono Gamer Inalambrico Q6s', 'Mouse Gamer M20', 'Serum Crecimiento De Pestanas Bioaqua X4', 'Lampara Led Proyectora Redonda',
-  'Brillo Labial Llavero Magico X 2 Und', 'Combo Diadema Reloj 7 Manillas P9', 'Audifonos Inalambricos I12', 'Smart Watch S1000 Pro 7 Manillas',
-  'Lapiz Optico Universal', 'Combo 7 Pulsos Reloj Audifonos D8000', 'Audifonos Inalambricos X30', 'Smart Watch Redondo Amoled V36',
-  'Audifonos Bluetooth Galaxy Buds Pro 3', 'Rasuradora Geemy 6146', 'Audifonos Gamer Vsg Shake Alambricos Rgb', 'Ra022 Mouse Gamer V16 6400dpi',
-  'Audifonos Inalambricos Clipon F50', 'Mouse Ergonomico Recargable', 'Teclado Gamer Fantech K613l Sakura Editi', 'Teclado Mecanico Gamer Blanco Rgb Switch',
-  'Teclado Gamer Mecanico Usb Anti Ghosting', 'Reloj Y Audifonos Combo X8', 'Pad Mouse Gaming Led Negro Antideslizant', 'Combo Smart Watch S10 7 Manillas M10',
-  'Combo Teclado Y Mouse Retroiluminado M4', 'T900s Ultra 2', 'Smart Watch T10 Ultra', 'Smart Watch Useultra 18', 'Parlante Philip Black Days',
-  'Diaema Tipo Max I13', 'Jbl Diaema 510 1.1', 'Base Soporte Portatil Plegable Funda', 'Teclado Y Mouse Gamer Weibo Wb550', 'Smartwatch Inteligente T900 Ultra',
-  'Audifonos Gamer Kotion G2000'
+const userData = [
+  {name:'Soporte Para Portatil Con Ventilador', provider:'GOOTECH'},
+  {name:'Parlante Inteligente Alexa Radio Bluetooth', provider:'Todonovedad'},
+  {name:'Batidora Scarlett', provider:'Bodega P&G'},
+  {name:'Teclado Rgb Transparente T10', provider:'Heidy'},
+  {name:'Audifonos Inalambricos Ultra Pods Max', provider:'Stom Accesorios'},
+  {name:'Audifonos Inalambricos M10', provider:'Stom Accesorios'},
+  {name:'Audifonos Inalambricos K11', provider:'Stom Accesorios'},
+  {name:'Mouse Cw905 Pink', provider:'TOTEM TECNOLOGIA'},
+  {name:'Manos Libres Tipo Iphone Original 3.5', provider:'Stom Accesorios'},
+  {name:'Cargador Xiaomi V8', provider:'Stom Accesorios'},
+  {name:'Combo Teclado Mouse Kt 988', provider:'Ventas Margarita'},
+  {name:'Super Combo Smart Watch airpods Parlante', provider:'One tech'},
+  {name:'Audifono Gamer Inalambrico Q6s', provider:'Igniz Technology'},
+  {name:'Mouse Gamer M20', provider:'Igniz Technology'},
+  {name:'Serum Crecimiento De Pestanas Bioaqua X4', provider:'ITM Comercializadora'},
+  {name:'Lampara Led Proyectora Redonda', provider:'One tech'},
+  {name:'Brillo Labial Llavero Magico X 2 Und', provider:'FERRETEROS DIGITALES'},
+  {name:'Combo Diadema Reloj 7 Manillas P9', provider:'One tech'},
+  {name:'Audifonos Inalambricos I12', provider:'Stom Accesorios'},
+  {name:'Smart Watch S1000 Pro 7 Manillas', provider:'One tech'},
+  {name:'Lapiz Optico Universal', provider:'Estrategias tecnológicas redes 11'},
+  {name:'Combo 7 Pulsos Reloj Audifonos D8000', provider:'DTech Tecnologia'},
+  {name:'Audifonos Inalambricos X30', provider:'DTech Tecnologia'},
+  {name:'Smart Watch Redondo Amoled V36', provider:'DTech Tecnologia'},
+  {name:'Audifonos Bluetooth Galaxy Buds Pro 3', provider:'One tech'},
+  {name:'Rasuradora Geemy 6146', provider:'One tech'},
+  {name:'Audifonos Gamer Vsg Shake Alambricos Rgb', provider:'Grupo control'},
+  {name:'Ra022 Mouse Gamer V16 6400dpi', provider:'Commagic'},
+  {name:'Audifonos Inalambricos Clipon F50', provider:'DTech Tecnologia'},
+  {name:'Mouse Ergonomico Recargable', provider:'ONIX TECH'},
+  {name:'Teclado Gamer Fantech K613l Sakura Editi', provider:'Grupo GAJ'},
+  {name:'Teclado Mecanico Gamer Blanco Rgb Switch', provider:'EXONICA SAS'},
+  {name:'Teclado Gamer Mecanico Usb Anti Ghosting', provider:'Cambio Systems'},
+  {name:'Reloj Y Audifonos Combo X8', provider:'One tech'},
+  {name:'Pad Mouse Gaming Led Negro Antideslizant', provider:'EXONICA SAS'},
+  {name:'Combo Smart Watch S10 7 Manillas M10', provider:'One tech'},
+  {name:'Combo Teclado Y Mouse Retroiluminado M4', provider:'3 Tiendas SAS'},
+  {name:'T900s Ultra 2', provider:'TECNO HOGAR (JHONATAN ALONSO)'},
+  {name:'Smart Watch T10 Ultra', provider:'One tech'},
+  {name:'Smart Watch Useultra 18', provider:'One tech'},
+  {name:'Parlante Philip Black Days', provider:'One tech'},
+  {name:'Diaema Tipo Max I13', provider:'Bod-shipping'},
+  {name:'Jbl Diaema 510 1.1', provider:'Bod-shipping'},
+  {name:'Base Soporte Portatil Plegable Funda', provider:'Grupo GAJ'},
+  {name:'Teclado Y Mouse Gamer Weibo Wb550', provider:'ANDRES'},
+  {name:'Smartwatch Inteligente T900 Ultra', provider:'One tech'},
+  {name:'Audifonos Gamer Kotion G2000', provider:'BCOMPANY'}
 ];
 
 const guessCategory = (name) => {
@@ -146,16 +181,17 @@ const guessCategory = (name) => {
 };
 
 const startId = allProducts.length + 1;
-const userProducts = userRaw.map((name, i) => {
-  const catId = guessCategory(name);
+const userProducts = userData.map((item, i) => {
+  const catId = guessCategory(item.name);
   const catObj = CATS.find(c=>c.id===catId) || CATS[0];
   const base = (catObj && catObj.subs && catObj.subs[0]) ? catObj.subs[0].base : 69900;
   const price = Math.round((base + (i%5)*15000)/100)*100;
   const id = startId + i;
-  const img = `https://via.placeholder.com/600x600?text=${encodeURIComponent(name)}`;
+  const img = `https://via.placeholder.com/600x600?text=${encodeURIComponent(item.name)}`;
   return {
     id, catId, catName: (catObj && catObj.name) || 'Varios', sub: catObj.subs ? catObj.subs[0].name : 'General',
-    icon: catObj.icon || 'escritorio', name, price, old: null,
+    icon: catObj.icon || 'escritorio', name: item.name, price, old: null,
+    provider: item.provider || 'Proveedor desconocido',
     rating: (4 + (i%3)*0.1).toFixed(1), reviews: 10 + (i*7)%90, stock: 12, delivery: '3-5 días hábiles', warranty: '12 meses',
     compat: 'Universal', badge: null, badgeText:'', img
   };
@@ -179,37 +215,183 @@ let wishlist = new Set();
 let compareSet = new Set();
 let couponPct = 0;
 let shipCost = 0;
-let theme = window.localStorage.getItem('tzTheme') || 'light';
+const storedTheme = window.localStorage.getItem('tzTheme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+let theme = storedTheme || (prefersDark ? 'dark' : 'light');
 document.body.setAttribute('data-theme', theme);
+document.documentElement.classList.toggle('dark', theme === 'dark');
+
+const header = document.getElementById('siteHeader');
+const searchWrap = document.getElementById('searchWrap');
+const searchInput = document.getElementById('searchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+const searchToggleBtn = document.getElementById('searchToggle');
+const themeToggleBtn = document.getElementById('themeToggle');
+const burgerBtn = document.getElementById('burgerBtn');
+const navOverlay = document.getElementById('navOverlay');
+const megaMenu = document.getElementById('megaMenu');
+const accountBtnElement = document.getElementById('accountBtn');
+const announcementBar = document.getElementById('announcementBar');
+const announcementClose = document.getElementById('announcementClose');
+
+function setHeaderScrolled(){
+  header.classList.toggle('scrolled', window.scrollY > 20);
+}
+
+function closeSearch(){
+  searchWrap.classList.remove('open');
+  searchSuggestions.innerHTML = '';
+}
+
+function closeMega(){
+  megaMenu.classList.remove('show');
+  megaMenu.setAttribute('aria-hidden','true');
+  navOverlay.classList.remove('show');
+}
+
+function buildMegaMenu(catId){
+  const cat = CATS.find(c=>c.id===catId);
+  if(!cat) return '';
+  const popular = allProducts.filter(p=>p.catId===catId && p.stock>0).slice(0,4);
+  return `
+    <div class="mega-menu-inner" role="menu">
+      <div class="mega-menu-col">
+        <h4>${cat.name}</h4>
+        <ul>
+          ${cat.subs.map(sub=>`<li><button type="button" class="mega-link" data-navcat="${cat.id}" data-sub="${sub.name}">${sub.name}</button></li>`).join('')}
+        </ul>
+      </div>
+      <div class="mega-menu-col">
+        <h4>Productos destacados</h4>
+        <div class="mega-products">
+          ${popular.map(p=>`
+            <button type="button" class="mega-product" data-id="${p.id}">
+              <span>${p.name}</span><strong>${fmt(p.price)}</strong>
+            </button>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function openMegaMenu(catId){
+  megaMenu.innerHTML = buildMegaMenu(catId);
+  megaMenu.classList.add('show');
+  megaMenu.setAttribute('aria-hidden','false');
+  navOverlay.classList.add('show');
+  megaMenu.querySelectorAll('.mega-link').forEach(btn => btn.addEventListener('click', () => {
+    setFilter(btn.dataset.navcat);
+    document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});
+    closeMega();
+  }));
+  megaMenu.querySelectorAll('.mega-product').forEach(btn => btn.addEventListener('click', () => {
+    openProductModal(Number(btn.dataset.id));
+  }));
+}
+
+async function fetchSearchSuggestions(query){
+  if(!query) return [];
+  try {
+    const res = await fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=4`);
+    if(res.ok){
+      const data = await res.json();
+      return (data.resources?.results?.products || []).map(p => ({ name:p.title, url:p.url, price:p.price || '' })).slice(0,4);
+    }
+  } catch (err) { }
+  return allProducts.filter(p => p.name.toLowerCase().includes(query.toLowerCase())).slice(0,4).map(p => ({name:p.name,url:'#catalogo',price:fmt(p.price)}));
+}
+
+function renderSearchSuggestions(query){
+  if(!query){ searchSuggestions.innerHTML = ''; return; }
+  fetchSearchSuggestions(query).then(items => {
+    searchSuggestions.innerHTML = items.map(item => `<button type="button" class="suggestion-item" data-q="${item.name}" data-url="${item.url}"><span>${item.name}</span><small>${item.price || ''}</small></button>`).join('');
+    searchSuggestions.querySelectorAll('.suggestion-item').forEach(button => button.addEventListener('click', () => {
+      searchInput.value = button.dataset.q;
+      searchTerm = button.dataset.q.toLowerCase();
+      renderCatalog();
+      closeSearch();
+    }));
+  });
+}
+
+function openMobileMenu(){
+  const navLinks = document.getElementById('mainNavLinks');
+  const open = !navLinks.classList.contains('mobile-open');
+  navLinks.classList.toggle('mobile-open', open);
+  burgerBtn.classList.toggle('active', open);
+  burgerBtn.setAttribute('aria-expanded', String(open));
+  navOverlay.classList.toggle('show', open);
+  if(open) navLinks.querySelector('a')?.focus(); else closeMega();
+}
+
+function closeMobileMenu(){
+  document.getElementById('mainNavLinks').classList.remove('mobile-open');
+  burgerBtn.classList.remove('active');
+  burgerBtn.setAttribute('aria-expanded', 'false');
+  navOverlay.classList.remove('show');
+  closeMega();
+}
+
+window.addEventListener('scroll', setHeaderScrolled);
+setHeaderScrolled();
+
+document.addEventListener('click', (event) => {
+  if(searchWrap.classList.contains('open') && !searchWrap.contains(event.target) && event.target !== searchToggleBtn){
+    closeSearch();
+  }
+  if(megaMenu.classList.contains('show') && !megaMenu.contains(event.target) && !event.target.closest('[data-navcat]')){
+    closeMega();
+  }
+  if(burgerBtn.classList.contains('active') && !document.getElementById('mainNavLinks').contains(event.target) && event.target !== burgerBtn){
+    closeMobileMenu();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if(event.key === 'Escape'){
+    closeSearch();
+    closeMega();
+    closeMobileMenu();
+  }
+});
+
+if(announcementBar && announcementClose){
+  const dismissed = window.localStorage.getItem('tzAnnouncementClosed');
+  if(dismissed === 'true') announcementBar.style.display = 'none';
+  announcementClose.addEventListener('click', () => {
+    announcementBar.style.display = 'none';
+    window.localStorage.setItem('tzAnnouncementClosed', 'true');
+  });
+}
 
 /* ============ RENDER: CATEGORY GRID ============ */
 document.getElementById('catGrid').innerHTML = CATS.map(c => `
   <div class="cat-card" data-cat="${c.id}"><div class="cat-icon">${icon(c.icon)}</div><h4>${c.name}</h4><span>${allProducts.filter(p=>p.catId===c.id).length} productos</span></div>`).join('');
 document.querySelectorAll('.cat-card').forEach(el => el.addEventListener('click', () => { setFilter(el.dataset.cat); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}); }));
 const headerLinks = document.querySelectorAll('.nav-links a');
-headerLinks.forEach(link => link.addEventListener('click', (e) => {
-  const href = link.getAttribute('href');
-  if (!href || !href.startsWith('#')) return;
-  e.preventDefault();
-  if (href === '#siteHeader') {
-    window.scrollTo({top:0, behavior:'smooth'});
-  } else {
-    const target = document.querySelector(href);
-    if (target) target.scrollIntoView({behavior:'smooth'});
+headerLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    e.preventDefault();
+    if (href === '#siteHeader') {
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({behavior:'smooth'});
+    }
+    headerLinks.forEach(l => l.classList.toggle('active', l===link));
+    if (link.dataset.navcat) setFilter(link.dataset.navcat);
+    closeMobileMenu();
+  });
+  if (link.dataset.navcat){
+    link.addEventListener('pointerenter', () => openMegaMenu(link.dataset.navcat));
+    link.addEventListener('focus', () => openMegaMenu(link.dataset.navcat));
   }
-  headerLinks.forEach(l => l.classList.toggle('active', l===link));
-  if (link.dataset.navcat) setFilter(link.dataset.navcat);
-  document.querySelector('.nav-links')?.classList.remove('mobile-open');
-  document.querySelector('.burger')?.classList.remove('active');
-}));
+});
 document.getElementById('footCatList').innerHTML = CATS.map(c => `<li><a href="#catalogo" data-navcat="${c.id}">${c.name}</a></li>`).join('');
 document.querySelectorAll('#footCatList a').forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); setFilter(el.dataset.navcat); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('active', link.dataset.navcat===el.dataset.navcat)); document.querySelector('.nav-links')?.classList.remove('mobile-open'); document.querySelector('.burger')?.classList.remove('active'); }));
-const burger = document.querySelector('.burger');
-if(burger){
-  burger.addEventListener('click', () => {
-    document.querySelector('.nav-links')?.classList.toggle('mobile-open');
-    burger.classList.toggle('active');
-  });
+if(burgerBtn){
+  burgerBtn.addEventListener('click', openMobileMenu);
 }
 
 /* ============ CARD TEMPLATE ============ */
@@ -289,12 +471,12 @@ document.getElementById('loadMoreBtn').addEventListener('click', () => { visible
 renderChips(); renderCatalog();
 
 document.getElementById('searchInput').addEventListener('input', (e) => {
-  searchTerm = e.target.value.trim().toLowerCase(); visibleCount = PAGE_SIZE; renderCatalog();
+  searchTerm = e.target.value.trim().toLowerCase(); visibleCount = PAGE_SIZE; renderCatalog(); renderSearchSuggestions(searchTerm);
 });
-document.getElementById('searchToggle').addEventListener('click', () => {
-  const wrap = document.getElementById('searchWrap');
-  wrap.classList.toggle('open');
-  if(wrap.classList.contains('open')) document.getElementById('searchInput').focus();
+searchToggleBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  if(searchWrap.classList.contains('open')) closeSearch();
+  else { searchWrap.classList.add('open'); searchInput.focus(); renderSearchSuggestions(searchInput.value.trim().toLowerCase()); }
 });
 
 function updateThemeIcon(){
@@ -568,7 +750,17 @@ function renderCheckout(){
 }
 
 /* ============ ACCOUNT MODAL ============ */
-document.getElementById('accountBtn').addEventListener('click', () => document.getElementById('accountOverlay').classList.add('show'));
+if(accountBtnElement){
+  const isLoggedIn = accountBtnElement.dataset.loggedIn === 'true';
+  const targetUrl = accountBtnElement.dataset.accountUrl || '/account/login';
+  accountBtnElement.addEventListener('click', () => {
+    if(isLoggedIn){
+      document.getElementById('accountOverlay').classList.add('show');
+    } else {
+      window.location.href = targetUrl;
+    }
+  });
+}
 document.getElementById('closeAccount').addEventListener('click', () => document.getElementById('accountOverlay').classList.remove('show'));
 document.querySelectorAll('.acc-tab, .acc-panel .link').forEach(el => el.addEventListener('click', () => {
   const target = el.dataset.acc;
