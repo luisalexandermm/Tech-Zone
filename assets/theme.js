@@ -119,7 +119,15 @@ function generateProducts(){
 }
 const allProducts = generateProducts();
 const destacados = allProducts.filter(p=>p.badge && p.badge!=='agotado').slice(0,5);
-const byId = id => allProducts.find(p=>p.id===id);
+const customProducts = {
+  'offer-gamer': {id:'offer-gamer', name:'Combo Gamer', price:399900, old:499900, sub:'Oferta', catName:'Ofertas', icon:'gaming', stock:1},
+  'offer-audio': {id:'offer-audio', name:'Audio Premium', price:679900, old:799900, sub:'Oferta', catName:'Ofertas', icon:'audio', stock:1},
+  'offer-setup': {id:'offer-setup', name:'Setup Completo', price:1499900, old:1699900, sub:'Oferta', catName:'Ofertas', icon:'teclado', stock:1}
+};
+const byId = (id) => {
+  if(typeof id === 'string') return customProducts[id] || allProducts.find(p=>p.id===Number(id));
+  return allProducts.find(p=>p.id===id);
+};
 
 /* ============ GLOBAL STATE ============ */
 let cart = {};          // id -> qty
@@ -321,7 +329,7 @@ function changeQty(id, delta){
 }
 function removeFromCart(id){ delete cart[id]; renderCartCount(); renderCart(); }
 function cartTotals(){
-  const subtotal = Object.entries(cart).reduce((s,[id,q]) => s + byId(Number(id)).price*q, 0);
+  const subtotal = Object.entries(cart).reduce((s,[id,q]) => s + byId(id).price*q, 0);
   const discount = subtotal * couponPct;
   const ship = subtotal>250000 ? 0 : shipCost;
   const total = subtotal - discount + ship;
@@ -337,18 +345,18 @@ function renderCart(){
   if(ids.length===0){ wrap.innerHTML = '<div class="empty-note">Tu carrito está vacío</div>'; }
   else {
     wrap.innerHTML = ids.map(idStr => {
-      const id = Number(idStr), p = byId(id), q = cart[id];
+      const p = byId(idStr), q = cart[idStr];
       return `<div class="cart-item">
         <div class="thumb">${icon(p.icon,26)}</div>
         <div class="info"><h5>${p.name}</h5><div class="sub">${p.sub}</div>
-          <div class="qty-ctrl"><button data-qty="-1" data-id="${id}">−</button><span>${q}</span><button data-qty="1" data-id="${id}">+</button></div>
-          <div class="remove" data-remove="${id}">Eliminar</div>
+          <div class="qty-ctrl"><button data-qty="-1" data-id="${idStr}">−</button><span>${q}</span><button data-qty="1" data-id="${idStr}">+</button></div>
+          <div class="remove" data-remove="${idStr}">Eliminar</div>
         </div>
         <div class="right">${fmt(p.price*q)}</div>
       </div>`;
     }).join('');
-    wrap.querySelectorAll('[data-qty]').forEach(b => b.addEventListener('click', () => changeQty(Number(b.dataset.id), Number(b.dataset.qty))));
-    wrap.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => removeFromCart(Number(b.dataset.remove))));
+    wrap.querySelectorAll('[data-qty]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, Number(b.dataset.qty))));
+    wrap.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => removeFromCart(b.dataset.remove)));
   }
   const rec = allProducts.filter(p => !cart[p.id] && p.stock>0).slice(0,6);
   document.getElementById('recRow').innerHTML = rec.map(p => `<div class="rec-card" data-add="${p.id}"><div class="ic">${icon(p.icon,22)}</div><h6>${p.name}</h6><p>${fmt(p.price)}</p></div>`).join('');
@@ -376,6 +384,19 @@ document.getElementById('goCheckoutBtn').addEventListener('click', () => {
   if(Object.keys(cart).length===0){ showToast('Tu carrito está vacío'); return; }
   closeCart(); openCheckout();
 });
+
+function addSetupToCart(){
+  const setupMap = {teclado:'builder-teclado', mouse:'builder-mouse', diadema:'builder-diadema', parlante:'builder-parlante', control:'builder-control'};
+  Object.entries(selection).forEach(([key,item]) => {
+    const productId = setupMap[key];
+    if(!customProducts[productId]){
+      customProducts[productId] = {id:productId, name:item.name, price:item.price, sub:tabLabels[key], catName:'Setup', icon:key==='diadema' ? 'audio' : key==='control' ? 'gaming' : key, stock:1};
+    }
+    addToCart(productId);
+  });
+}
+document.getElementById('addSetupBtn').addEventListener('click', addSetupToCart);
+document.querySelectorAll('[data-offer-add]').forEach(el => el.addEventListener('click', () => addToCart(el.dataset.offerAdd)));
 
 /* ============ CHECKOUT (multi-step) ============ */
 let checkoutStep = 1;
@@ -477,9 +498,12 @@ const offers = [
   {name:'Audio Premium', desc:'Diadema + Parlante', price:679900, old:799900, tag:'-15%', icon:'audio'},
   {name:'Setup Completo', desc:'5 productos incluidos', price:1499900, old:1699900, tag:'-10%', icon:'teclado'}
 ];
-document.getElementById('offersGrid').innerHTML = offers.map(o => `
+document.getElementById('offersGrid').innerHTML = offers.map((o, index) => {
+  const offerId = index === 0 ? 'offer-gamer' : index === 1 ? 'offer-audio' : 'offer-setup';
+  return `
   <div class="offer-card"><div class="offer-media"><span class="badge oferta">${o.tag}</span><div style="color:#c7c7c5;">${icon(o.icon)}</div></div>
-    <div class="offer-body"><h4>${o.name}</h4><p>${o.desc}</p><div class="offer-price"><b>${fmt(o.price)}</b><small>${fmt(o.old)}</small></div><a class="btn btn-ghost" href="#">Comprar ahora</a></div></div>`).join('');
+    <div class="offer-body"><h4>${o.name}</h4><p>${o.desc}</p><div class="offer-price"><b>${fmt(o.price)}</b><small>${fmt(o.old)}</small></div><button class="btn btn-ghost" data-offer-add="${offerId}">Comprar ahora</button></div></div>`;
+}).join('');
 
 const benefits = [
   {icon:'M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5Z', title:'Compra segura', text:'Tus compras están protegidas con los más altos estándares de seguridad.'},
