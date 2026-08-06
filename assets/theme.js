@@ -364,9 +364,12 @@ if(announcementBar && announcementClose){
 }
 
 /* ============ RENDER: CATEGORY GRID ============ */
-document.getElementById('catGrid').innerHTML = CATS.map(c => `
+const catGridEl = document.getElementById('catGrid');
+if(catGridEl){
+  catGridEl.innerHTML = CATS.map(c => `
   <div class="cat-card" data-cat="${c.id}"><div class="cat-icon">${icon(c.icon)}</div><h4>${c.name}</h4><span>${allProducts.filter(p=>p.catId===c.id).length} productos</span></div>`).join('');
-document.querySelectorAll('.cat-card').forEach(el => el.addEventListener('click', () => { setFilter(el.dataset.cat); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}); }));
+  catGridEl.querySelectorAll('.cat-card').forEach(el => el.addEventListener('click', () => { setFilter(el.dataset.cat); const target = document.getElementById('catalogo'); if(target) target.scrollIntoView({behavior:'smooth'}); }));
+} else console.warn('catGrid element not found');
 const headerLinks = document.querySelectorAll('.nav-links a');
 headerLinks.forEach(link => {
   link.addEventListener('click', (e) => {
@@ -388,8 +391,12 @@ headerLinks.forEach(link => {
     link.addEventListener('focus', () => openMegaMenu(link.dataset.navcat));
   }
 });
-document.getElementById('footCatList').innerHTML = CATS.map(c => `<li><a href="#catalogo" data-navcat="${c.id}">${c.name}</a></li>`).join('');
 document.querySelectorAll('#footCatList a').forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); setFilter(el.dataset.navcat); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('active', link.dataset.navcat===el.dataset.navcat)); document.querySelector('.nav-links')?.classList.remove('mobile-open'); document.querySelector('.burger')?.classList.remove('active'); }));
+const footCatListEl = document.getElementById('footCatList');
+if(footCatListEl){
+  footCatListEl.innerHTML = CATS.map(c => `<li><a href="#catalogo" data-navcat="${c.id}">${c.name}</a></li>`).join('');
+  footCatListEl.querySelectorAll('a').forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); setFilter(el.dataset.navcat); const target = document.getElementById('catalogo'); if(target) target.scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('active', link.dataset.navcat===el.dataset.navcat)); document.querySelector('.nav-links')?.classList.remove('mobile-open'); document.querySelector('.burger')?.classList.remove('active'); }));
+} else console.warn('footCatList element not found');
 if(burgerBtn){
   burgerBtn.addEventListener('click', openMobileMenu);
 }
@@ -436,8 +443,11 @@ function bindCardEvents(container){
   });
 }
 
-document.getElementById('prodGrid').innerHTML = destacados.map(cardHTML).join('');
-bindCardEvents(document.getElementById('prodGrid'));
+const prodGridEl = document.getElementById('prodGrid');
+if(prodGridEl){
+  prodGridEl.innerHTML = destacados.map(cardHTML).join('');
+  bindCardEvents(prodGridEl);
+} else console.warn('prodGrid element not found');
 
 /* ============ CATALOG: FILTERS + LOAD MORE + SEARCH ============ */
 let currentFilter = 'todos';
@@ -452,25 +462,34 @@ function filteredList(){
 }
 function renderChips(){
   const chips = [{id:'todos', name:'Todos'}, ...CATS.map(c=>({id:c.id, name:c.name}))];
-  document.getElementById('filterChips').innerHTML = chips.map(c => `<button class="chip ${currentFilter===c.id?'active':''}" data-chip="${c.id}">${c.name}</button>`).join('');
-  document.querySelectorAll('.chip').forEach(el => el.addEventListener('click', () => setFilter(el.dataset.chip)));
+  const chipsEl = document.getElementById('filterChips');
+  if(chipsEl){
+    chipsEl.innerHTML = chips.map(c => `<button class="chip ${currentFilter===c.id?'active':''}" data-chip="${c.id}">${c.name}</button>`).join('');
+    chipsEl.querySelectorAll('.chip').forEach(el => el.addEventListener('click', () => setFilter(el.dataset.chip)));
+  } else console.warn('filterChips element not found');
 }
 function setFilter(id){ currentFilter = id; visibleCount = PAGE_SIZE; renderChips(); renderCatalog(); }
 function renderCatalog(){
   const list = filteredList();
   const shown = list.slice(0, visibleCount);
   const grid = document.getElementById('catalogGrid');
-  grid.innerHTML = shown.map(cardHTML).join('');
-  bindCardEvents(grid);
-  document.getElementById('catalogCount').textContent = `Mostrando ${shown.length} de ${list.length} productos`;
+  if(grid){
+    grid.innerHTML = shown.map(cardHTML).join('');
+    bindCardEvents(grid);
+  } else console.warn('catalogGrid element not found');
+  const catalogCountEl = document.getElementById('catalogCount');
+  if(catalogCountEl) catalogCountEl.textContent = `Mostrando ${shown.length} de ${list.length} productos`;
   const catLabel = currentFilter==='todos' ? 'todas las categorías' : (CATS.find(c=>c.id===currentFilter)||{}).name;
-  document.getElementById('catalogSub').textContent = searchTerm ? `Resultados para "${searchTerm}"` : `Explorando ${catLabel}`;
-  document.getElementById('loadMoreBtn').style.display = visibleCount >= list.length ? 'none' : 'inline-flex';
+  const catalogSubEl = document.getElementById('catalogSub');
+  if(catalogSubEl) catalogSubEl.textContent = searchTerm ? `Resultados para "${searchTerm}"` : `Explorando ${catLabel}`;
+  const loadMoreBtnEl = document.getElementById('loadMoreBtn');
+  if(loadMoreBtnEl) loadMoreBtnEl.style.display = visibleCount >= list.length ? 'none' : 'inline-flex';
 }
-document.getElementById('loadMoreBtn').addEventListener('click', () => { visibleCount += PAGE_SIZE; renderCatalog(); });
+const loadMoreBtnEl = document.getElementById('loadMoreBtn');
+if(loadMoreBtnEl) loadMoreBtnEl.addEventListener('click', () => { visibleCount += PAGE_SIZE; renderCatalog(); });
 renderChips(); renderCatalog();
 
-document.getElementById('searchInput').addEventListener('input', (e) => {
+if(searchInput) searchInput.addEventListener('input', (e) => {
   searchTerm = e.target.value.trim().toLowerCase(); visibleCount = PAGE_SIZE; renderCatalog(); renderSearchSuggestions(searchTerm);
 });
 searchToggleBtn.addEventListener('click', (e) => {
