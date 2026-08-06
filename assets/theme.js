@@ -117,7 +117,7 @@ function generateProducts(){
   });
   return list;
 }
-let allProducts = generateProducts();
+let allProducts = [];
 
 // ==== Productos importados del usuario (placeholders y precios sugeridos) ====
 const userData = [
@@ -191,12 +191,12 @@ const userProducts = userData.map((item, i) => {
     icon: catObj.icon || 'escritorio', name: item.name, price, old: null,
     provider: item.provider || 'Proveedor desconocido',
     rating: (4 + (i%3)*0.1).toFixed(1), reviews: 10 + (i*7)%90, stock: 12, delivery: '3-5 días hábiles', warranty: '12 meses',
-    compat: 'Universal', badge: null, badgeText:'', img
+    compat: 'Universal', badge: 'nuevo', badgeText:'Nuevo', img
   };
 });
 allProducts.push(...userProducts);
 
-const destacados = allProducts.filter(p=>p.badge && p.badge!=='agotado').slice(0,5);
+const destacados = allProducts.slice(0,5);
 const customProducts = {
   'offer-gamer': {id:'offer-gamer', name:'Combo Gamer', price:399900, old:499900, sub:'Oferta', catName:'Ofertas', icon:'gaming', stock:1},
   'offer-audio': {id:'offer-audio', name:'Audio Premium', price:679900, old:799900, sub:'Oferta', catName:'Ofertas', icon:'audio', stock:1},
@@ -364,7 +364,8 @@ if(announcementBar && announcementClose){
 /* ============ RENDER: CATEGORY GRID ============ */
 const catGridEl = document.getElementById('catGrid');
 if(catGridEl){
-  catGridEl.innerHTML = CATS.map(c => `
+  const visibleCats = CATS.filter(c => allProducts.some(p=>p.catId===c.id));
+  catGridEl.innerHTML = visibleCats.map(c => `
   <div class="cat-card" data-cat="${c.id}"><div class="cat-icon">${icon(c.icon)}</div><h4>${c.name}</h4><span>${allProducts.filter(p=>p.catId===c.id).length} productos</span></div>`).join('');
   catGridEl.querySelectorAll('.cat-card').forEach(el => el.addEventListener('click', () => { setFilter(el.dataset.cat); const target = document.getElementById('catalogo'); if(target) target.scrollIntoView({behavior:'smooth'}); }));
 } else console.warn('catGrid element not found');
@@ -392,7 +393,8 @@ headerLinks.forEach(link => {
 document.querySelectorAll('#footCatList a').forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); setFilter(el.dataset.navcat); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('active', link.dataset.navcat===el.dataset.navcat)); document.querySelector('.nav-links')?.classList.remove('mobile-open'); document.querySelector('.burger')?.classList.remove('active'); }));
 const footCatListEl = document.getElementById('footCatList');
 if(footCatListEl){
-  footCatListEl.innerHTML = CATS.map(c => `<li><a href="#catalogo" data-navcat="${c.id}">${c.name}</a></li>`).join('');
+  const visibleCats = CATS.filter(c => allProducts.some(p=>p.catId===c.id));
+  footCatListEl.innerHTML = visibleCats.map(c => `<li><a href="#catalogo" data-navcat="${c.id}">${c.name}</a></li>`).join('');
   footCatListEl.querySelectorAll('a').forEach(el => el.addEventListener('click', (e) => { e.preventDefault(); setFilter(el.dataset.navcat); const target = document.getElementById('catalogo'); if(target) target.scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.nav-links a').forEach(link => link.classList.toggle('active', link.dataset.navcat===el.dataset.navcat)); document.querySelector('.nav-links')?.classList.remove('mobile-open'); document.querySelector('.burger')?.classList.remove('active'); }));
 } else console.warn('footCatList element not found');
 if(burgerBtn){
@@ -459,7 +461,8 @@ function filteredList(){
   return list;
 }
 function renderChips(){
-  const chips = [{id:'todos', name:'Todos'}, ...CATS.map(c=>({id:c.id, name:c.name}))];
+  const visibleCats = CATS.filter(c => allProducts.some(p=>p.catId===c.id));
+  const chips = [{id:'todos', name:'Todos'}, ...visibleCats.map(c=>({id:c.id, name:c.name}))];
   const chipsEl = document.getElementById('filterChips');
   if(chipsEl){
     chipsEl.innerHTML = chips.map(c => `<button class="chip ${currentFilter===c.id?'active':''}" data-chip="${c.id}">${c.name}</button>`).join('');

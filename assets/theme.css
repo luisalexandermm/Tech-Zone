@@ -191,7 +191,8 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:76
 .benefit p{font-size:12.5px;color:var(--text-soft);margin-top:6px;line-height:1.5;}
 .footer{background:linear-gradient(180deg,#6e0f14 0%, #4a0b0d 100%);color:var(--pearl);padding:64px 0 34px;border-top:6px solid rgba(255,255,255,.04);}
 .foot-wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding-bottom:26px;align-items:start;}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;padding-bottom:26px;align-items:start;}
+.footer-col{display:flex;flex-direction:column;gap:16px;}
 .foot-brand .logo{display:flex;align-items:center;gap:12px;color:#fff;font-weight:800;font-size:18px;}
 .foot-brand .logo img{width:44px;height:auto;border-radius:8px;box-shadow:0 8px 18px rgba(0,0,0,.35)}
 .foot-brand p{font-size:14px;color:rgba(255,255,255,.85);margin-top:12px;line-height:1.6;max-width:320px;}
@@ -202,16 +203,18 @@ footer h5{font-size:14px;font-weight:700;margin-bottom:16px;color:var(--pearl);}
 footer ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0;margin:0;}
 footer ul li a{font-size:13px;color:rgba(255,255,255,.82);transition:color .15s, transform .15s;display:inline-block;}
 footer ul li a:hover{color:#fff;transform:translateX(4px);}
+.footer-note{color:rgba(255,255,255,.6);font-size:13px;}
+.newsletter-block{display:flex;flex-direction:column;gap:10px;}
 .pay-methods{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center;}
 .pay-methods span{font-size:12px;font-weight:700;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.04);color:rgba(255,255,255,.9);}
-.newsletter{display:flex;gap:8px;margin-top:14px;align-items:center;}
+.newsletter{display:flex;gap:8px;margin-top:8px;align-items:center;}
 .newsletter input{flex:1;border-radius:999px;border:1px solid rgba(255,255,255,.06);background:transparent;color:var(--pearl);padding:12px 14px;font-size:13px;outline:none}
 .newsletter input::placeholder{color:rgba(255,255,255,.6)}
 .newsletter button{background:var(--grad);color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;border:none}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.04);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,.7)}
 .foot-bottom .legal{font-size:13px;color:rgba(255,255,255,.6)}
-.foot-bottom .foot-links{display:flex;gap:18px;align-items:center}
-.foot-bottom .foot-links a{color:rgba(255,255,255,.6);font-weight:600}
+.foot-bottom-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;}
+.foot-bottom-links a{color:rgba(255,255,255,.6);font-weight:600}
 
 @media (max-width:720px){
   .foot-grid{grid-template-columns:1fr;gap:18px;padding-bottom:18px}
