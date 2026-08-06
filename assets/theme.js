@@ -862,7 +862,6 @@ document.getElementById('newsletterBtn').addEventListener('click', () => {
 });
 
 /* ============ SCROLL: HEADER, REVEAL, BACK TOP, PARALLAX ============ */
-const header = document.getElementById('siteHeader');
 window.addEventListener('scroll', () => {
   header.classList.toggle('scrolled', window.scrollY > 30);
   document.getElementById('backTop').classList.toggle('show', window.scrollY > 500);
