@@ -108,6 +108,11 @@ nav.wrap{display:flex;align-items:center;justify-content:space-between;height:76
 .cat-card h4{font-size:14.5px;font-weight:700;}
 .cat-card span{font-size:11.5px;color:var(--text-soft);display:block;margin-top:4px;}
 .prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+#prodGrid{display:flex;gap:18px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+#prodGrid .prod-card{min-width:280px;flex:0 0 280px;scroll-snap-align:start;}
+#prodGrid::-webkit-scrollbar{height:10px;}
+#prodGrid::-webkit-scrollbar-thumb{background:rgba(23,23,23,.2);border-radius:999px;}
+#prodGrid::-webkit-scrollbar-track{background:transparent;}
 .prod-card{--x:50%;--y:50%;position:relative;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .12s ease, box-shadow .25s ease;will-change:transform;}
 .prod-card::before{content:"";position:absolute;inset:0;background:radial-gradient(200px circle at var(--x) var(--y), rgba(230,59,122,.16), transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none;z-index:1;}
 .prod-card:hover::before{opacity:1;}
