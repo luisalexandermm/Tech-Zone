@@ -121,6 +121,54 @@ let allProducts = [];
 
 // ==== Productos importados del usuario (placeholders y precios sugeridos) ====
 const userData = [
+  {name:'Soporte Para Portatil Con Ventilador', provider:'GOOTECH', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2218037/6fb2db21-d45e-43ac-8dec-6aa1dc030ebb.jpeg'},
+  {name:'Parlante Inteligente Alexa Radio Bluetooth', provider:'Todonovedad', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2216236/f2812846-6a78-418d-a078-648c4a1f25ce.jpg'},
+  {name:'Teclado Rgb Transparente T10', provider:'Heidy', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2193879/1783354004Image_2026-07-06_11-00-00.png'},
+  {name:'Audifonos Inalambricos Ultra Pods Max', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179267/1781735183FireShot%20Capture%20652%20-%20%20-%20[].png'},
+  {name:'Audifonos Inalambricos M10', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179227/1781734265FireShot%20Capture%20647%20-%20%20-%20[].png'},
+  {name:'Audifonos Inalambricos K11', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179194/1781733318FireShot%20Capture%20642%20-%20%20-%20[].png'},
+  {name:'Mouse Cw905 Pink', provider:'TOTEM TECNOLOGIA', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2176204/17813038091.png'},
+  {name:'Manos Libres Tipo Iphone Original 3.5', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173683/1781111664Screenshot%202026-06-10%20121013.png'},
+  {name:'Cargador Xiaomi V8', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173681/1781111664Screenshot%202026-06-10%20121013.png'},
+  {name:'Combo Teclado Mouse Kt 988', provider:'Ventas Margarita', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2153844/17792031931746916549625_1746916538703_1746916539285.webp'},
+  {name:'Super Combo Smart Watch airpods Parlante', provider:'One tech', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2149055/1778803193Screenshot%202026-05-30%20121013.png'},
+  {name:'Audifono Gamer Inalambrico Q6s', provider:'Igniz Technology', img:'https://source.unsplash.com/600x600/?gaming,headset,wireless'},
+  {name:'Mouse Gamer M20', provider:'Igniz Technology', img:'https://source.unsplash.com/600x600/?gaming,mouse,computer'},
+  {name:'Lampara Led Proyectora Redonda', provider:'One tech', img:'https://source.unsplash.com/600x600/?desk,lamp,led'},
+  {name:'Combo Diadema Reloj 7 Manillas P9', provider:'One tech', img:'https://source.unsplash.com/600x600/?headset,watch,combo'},
+  {name:'Audifonos Inalambricos I12', provider:'Stom Accesorios', img:'https://source.unsplash.com/600x600/?earbuds,wireless,headphones'},
+  {name:'Smart Watch S1000 Pro 7 Manillas', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,pro'},
+  {name:'Lapiz Optico Universal', provider:'Estrategias tecnológicas redes 11', img:'https://source.unsplash.com/600x600/?stylus,pen,tablet'},
+  {name:'Combo 7 Pulsos Reloj Audifonos D8000', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
+  {name:'Audifonos Inalambricos X30', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?wireless,earphones,headset'},
+  {name:'Smart Watch Redondo Amoled V36', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?smartwatch,amoled,round'},
+  {name:'Audifonos Bluetooth Galaxy Buds Pro 3', provider:'One tech', img:'https://source.unsplash.com/600x600/?galaxy,buds,earphones'},
+  {name:'Rasuradora Geemy 6146', provider:'One tech', img:'https://source.unsplash.com/600x600/?razor,electric,shaver'},
+  {name:'Audifonos Gamer Vsg Shake Alambricos Rgb', provider:'Grupo control', img:'https://source.unsplash.com/600x600/?rgb,headset,gaming'},
+  {name:'Ra022 Mouse Gamer V16 6400dpi', provider:'Commagic', img:'https://source.unsplash.com/600x600/?gaming,mouse,highdpi'},
+  {name:'Audifonos Inalambricos Clipon F50', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?clipon,earphones,wireless'},
+  {name:'Mouse Ergonomico Recargable', provider:'ONIX TECH', img:'https://source.unsplash.com/600x600/?ergonomic,mouse,computer'},
+  {name:'Teclado Gamer Fantech K613l Sakura Editi', provider:'Grupo GAJ', img:'https://source.unsplash.com/600x600/?pink,keyboard,gaming'},
+  {name:'Teclado Mecanico Gamer Blanco Rgb Switch', provider:'EXONICA SAS', img:'https://source.unsplash.com/600x600/?white,keyboard,rgb'},
+  {name:'Teclado Gamer Mecanico Usb Anti Ghosting', provider:'Cambio Systems', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mechanical'},
+  {name:'Reloj Y Audifonos Combo X8', provider:'One tech', img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
+  {name:'Pad Mouse Gaming Led Negro Antideslizant', provider:'EXONICA SAS', img:'https://source.unsplash.com/600x600/?mousepad,led,black'},
+  {name:'Combo Smart Watch S10 7 Manillas M10', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,combo,watch'},
+  {name:'Combo Teclado Y Mouse Retroiluminado M4', provider:'3 Tiendas SAS', img:'https://source.unsplash.com/600x600/?retro,keyboard,mouse'},
+  {name:'T900s Ultra 2', provider:'TECNO HOGAR (JHONATAN ALONSO)', img:'https://source.unsplash.com/600x600/?smartwatch,ultra'},
+  {name:'Smart Watch T10 Ultra', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,ultra'},
+  {name:'Smart Watch Useultra 18', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,useultra'},
+  {name:'Parlante Philip Black Days', provider:'One tech', img:'https://source.unsplash.com/600x600/?speaker,black'},
+  {name:'Diaema Tipo Max I13', provider:'Bod-shipping', img:'https://source.unsplash.com/600x600/?earbuds,wireless'},
+  {name:'Jbl Diaema 510 1.1', provider:'Bod-shipping', img:'https://source.unsplash.com/600x600/?jbl,headphones'},
+  {name:'Base Soporte Portatil Plegable Funda', provider:'Grupo GAJ', img:'https://source.unsplash.com/600x600/?laptop,stand,foldable'},
+  {name:'Teclado Y Mouse Gamer Weibo Wb550', provider:'ANDRES', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mouse,combo'},
+  {name:'Smartwatch Inteligente T900 Ultra', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch'} ,
+  {name:'Audifonos Gamer Kotion G2000', provider:'BCOMPANY', img:'https://source.unsplash.com/600x600/?gaming,headset'}
+];
+
+// Combos especiales que no se incluyen en la lista general de catálogo
+const comboItems = [
   {name:'Combo Gamer M450', provider:'Heidy', price:70000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1644089/1737997010combo-gamer-proyector-consola-m8-leader-store-409396681.png'},
   {name:'Combo Gamer Proyector Consola M8', provider:'brayan', price:280000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1610077/17355869723.jpg'},
   {name:'Combo Gamer Retro Iluminado Teclado', provider:'Hepa Tecnología', price:50000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475520/17418855661.jpg'},
@@ -162,7 +210,21 @@ const destacados = allProducts.slice(0,5);
 const customProducts = {
   'offer-gamer': {id:'offer-gamer', name:'Combo Gamer', price:399900, old:499900, sub:'Oferta', catName:'Ofertas', icon:'gaming', stock:1},
   'offer-audio': {id:'offer-audio', name:'Audio Premium', price:679900, old:799900, sub:'Oferta', catName:'Ofertas', icon:'audio', stock:1},
-  'offer-setup': {id:'offer-setup', name:'Setup Completo', price:1499900, old:1699900, sub:'Oferta', catName:'Ofertas', icon:'teclado', stock:1}
+  'offer-setup': {id:'offer-setup', name:'Setup Completo', price:1499900, old:1699900, sub:'Oferta', catName:'Ofertas', icon:'teclado', stock:1},
+  ...comboItems.reduce((acc, combo, idx) => {
+    const offerId = `offer-combo-${idx}`;
+    acc[offerId] = {
+      id: offerId,
+      name: combo.name,
+      price: combo.price,
+      old: combo.price ? Math.round(combo.price * 1.12 / 100) * 100 : null,
+      sub: 'Combo',
+      catName: 'Ofertas',
+      icon: 'gaming',
+      stock: 1
+    };
+    return acc;
+  }, {})
 };
 const byId = (id) => {
   if(typeof id === 'string') return customProducts[id] || allProducts.find(p=>p.id===Number(id));
@@ -757,13 +819,20 @@ document.getElementById('recoverBtn').addEventListener('click', () => showToast(
 const offers = [
   {name:'Combo Gamer', desc:'Teclado + Mouse', price:399900, old:499900, tag:'-20%', icon:'gaming'},
   {name:'Audio Premium', desc:'Diadema + Parlante', price:679900, old:799900, tag:'-15%', icon:'audio'},
-  {name:'Setup Completo', desc:'5 productos incluidos', price:1499900, old:1699900, tag:'-10%', icon:'teclado'}
+  {name:'Setup Completo', desc:'5 productos incluidos', price:1499900, old:1699900, tag:'-10%', icon:'teclado'},
+  ...comboItems.map(combo => ({
+    name: combo.name,
+    desc: `Proveedor: ${combo.provider}`,
+    price: combo.price,
+    old: combo.price ? Math.round(combo.price * 1.12 / 100) * 100 : null,
+    tag: 'Nuevo',
+    icon: 'gaming'
+  }))
 ];
-document.getElementById('offersGrid').innerHTML = offers.map((o, index) => {
-  const offerId = index === 0 ? 'offer-gamer' : index === 1 ? 'offer-audio' : 'offer-setup';
+document.getElementById('offersGrid').innerHTML = offers.map((o) => {
   return `
   <div class="offer-card"><div class="offer-media"><span class="badge oferta">${o.tag}</span><div style="color:#c7c7c5;">${icon(o.icon)}</div></div>
-    <div class="offer-body"><h4>${o.name}</h4><p>${o.desc}</p><div class="offer-price"><b>${fmt(o.price)}</b><small>${fmt(o.old)}</small></div><button class="btn btn-ghost" data-offer-add="${offerId}">Comprar ahora</button></div></div>`;
+    <div class="offer-body"><h4>${o.name}</h4><p>${o.desc}</p><div class="offer-price"><b>${fmt(o.price)}</b><small>${fmt(o.old)}</small></div><button class="btn btn-ghost" data-offer-add="${o.id}">Comprar ahora</button></div></div>`;
 }).join('');
 
 const benefits = [
@@ -780,9 +849,10 @@ const setupData = {
   mouse: [{name:'Logitech G502', price:339900},{name:'Razer DeathAdder', price:259900},{name:'Redragon M711', price:129900}],
   diadema: [{name:'HyperX Cloud II', price:299900},{name:'JBL Quantum 100', price:189900},{name:'Sony Inzone H3', price:459900}],
   parlante: [{name:'JBL Flip 6', price:499900},{name:'Sony SRS-XB13', price:229900}],
-  control: [{name:'Xbox Series X', price:279900},{name:'DualSense PS5', price:319900}]
+  control: [{name:'Xbox Series X', price:279900},{name:'DualSense PS5', price:319900}],
+  combo: comboItems.map(item => ({name:item.name, price:item.price, provider:item.provider}))
 };
-const tabLabels = {teclado:'Teclado', mouse:'Mouse', diadema:'Diadema', parlante:'Parlante', control:'Control'};
+const tabLabels = {teclado:'Teclado', mouse:'Mouse', diadema:'Diadema', parlante:'Parlante', control:'Control', combo:'Combo'};
 const tabKeys = Object.keys(setupData);
 let activeTab = 'teclado';
 const selection = {}; selection.teclado = {...setupData.teclado[0]};
