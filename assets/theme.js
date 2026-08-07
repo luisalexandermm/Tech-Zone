@@ -117,7 +117,7 @@ function generateProducts(){
   });
   return list;
 }
-let allProducts = [];
+let allProducts = generateProducts();
 
 // ==== Productos importados del usuario (placeholders y precios sugeridos) ====
 const userData = [
@@ -221,7 +221,13 @@ const customProducts = {
       sub: 'Combo',
       catName: 'Ofertas',
       icon: 'gaming',
-      stock: 1
+      stock: 1,
+      rating: 4.5,
+      reviews: 20,
+      delivery: '3-5 días hábiles',
+      warranty: '12 meses',
+      compat: 'Universal',
+      img: combo.img
     };
     return acc;
   }, {})
@@ -699,11 +705,31 @@ document.getElementById('goCheckoutBtn').addEventListener('click', () => {
 });
 
 function addSetupToCart(){
-  const setupMap = {teclado:'builder-teclado', mouse:'builder-mouse', diadema:'builder-diadema', parlante:'builder-parlante', control:'builder-control'};
+  const setupMap = {teclado:'builder-teclado', mouse:'builder-mouse', diadema:'builder-diadema', parlante:'builder-parlante', control:'builder-control', combo:'builder-combo'};
   Object.entries(selection).forEach(([key,item]) => {
     const productId = setupMap[key];
+    if(!productId) return;
     if(!customProducts[productId]){
-      customProducts[productId] = {id:productId, name:item.name, price:item.price, sub:tabLabels[key], catName:'Setup', icon:key==='diadema' ? 'audio' : key==='control' ? 'gaming' : key, stock:1};
+      customProducts[productId] = {
+        id: productId,
+        name: item.name,
+        price: item.price,
+        sub: tabLabels[key],
+        catName: key === 'combo' ? 'Combo' : 'Setup',
+        icon: key==='diadema' ? 'audio' : key==='control' ? 'gaming' : key==='combo' ? 'gaming' : key,
+        stock: 1,
+        rating: 4.5,
+        reviews: 20,
+        delivery: '3-5 días hábiles',
+        warranty: '12 meses',
+        compat: 'Universal'
+      };
+    } else {
+      customProducts[productId].name = item.name;
+      customProducts[productId].price = item.price;
+      customProducts[productId].sub = tabLabels[key];
+      customProducts[productId].catName = key === 'combo' ? 'Combo' : 'Setup';
+      customProducts[productId].icon = key==='diadema' ? 'audio' : key==='control' ? 'gaming' : key==='combo' ? 'gaming' : key;
     }
     addToCart(productId);
   });
@@ -817,10 +843,11 @@ document.getElementById('recoverBtn').addEventListener('click', () => showToast(
 
 /* ============ OFFERS / BENEFITS ============ */
 const offers = [
-  {name:'Combo Gamer', desc:'Teclado + Mouse', price:399900, old:499900, tag:'-20%', icon:'gaming'},
-  {name:'Audio Premium', desc:'Diadema + Parlante', price:679900, old:799900, tag:'-15%', icon:'audio'},
-  {name:'Setup Completo', desc:'5 productos incluidos', price:1499900, old:1699900, tag:'-10%', icon:'teclado'},
-  ...comboItems.map(combo => ({
+  {id:'offer-gamer', name:'Combo Gamer', desc:'Teclado + Mouse', price:399900, old:499900, tag:'-20%', icon:'gaming'},
+  {id:'offer-audio', name:'Audio Premium', desc:'Diadema + Parlante', price:679900, old:799900, tag:'-15%', icon:'audio'},
+  {id:'offer-setup', name:'Setup Completo', desc:'5 productos incluidos', price:1499900, old:1699900, tag:'-10%', icon:'teclado'},
+  ...comboItems.map((combo, idx) => ({
+    id: `offer-combo-${idx}`,
     name: combo.name,
     desc: `Proveedor: ${combo.provider}`,
     price: combo.price,
@@ -857,7 +884,10 @@ const tabKeys = Object.keys(setupData);
 let activeTab = 'teclado';
 const selection = {}; selection.teclado = {...setupData.teclado[0]};
 function renderTabs(){
-  document.getElementById('tabs').innerHTML = tabKeys.map(k => `<button class="tab ${k===activeTab?'active':''}" data-tab="${k}">${icon(k==='diadema'?'audio':k==='control'?'gaming':k)} ${tabLabels[k]}</button>`).join('');
+  document.getElementById('tabs').innerHTML = tabKeys.map(k => {
+    const iconName = k === 'diadema' ? 'audio' : k === 'control' ? 'gaming' : k === 'combo' ? 'gaming' : k;
+    return `<button class="tab ${k===activeTab?'active':''}" data-tab="${k}">${icon(iconName)} ${tabLabels[k]}</button>`;
+  }).join('');
   document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => { activeTab = btn.dataset.tab; renderTabs(); renderOptions(); }));
 }
 function renderOptions(){
@@ -874,7 +904,6 @@ function renderSummary(){
   document.getElementById('sumTotal').textContent = fmt(total);
 }
 renderTabs(); renderOptions(); renderSummary();
-document.getElementById('addSetupBtn').addEventListener('click', () => showToast('Setup agregado al carrito'));
 
 /* ============ COUNTDOWN ============ */
 const countdownTarget = Date.now() + 1000*60*60*6; // 6 horas desde que se carga la página
