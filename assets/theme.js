@@ -83,6 +83,21 @@ const CATS = [
     {name:'Organizadores', icon:'cableorg', base:34900, count:2},{name:'Mouse Inalámbricos', icon:'mouse', base:69900, count:2},
     {name:'Teclados Inalámbricos', icon:'teclado', base:129900, count:1},{name:'Calculadoras', icon:'calculator', base:24900, count:1},
     {name:'Accesorios de Escritorio', icon:'escritorio', base:39900, count:1}
+  ]},
+  {id:'bisuteria', name:'Bisutería', icon:'lamp', subs:[
+    {name:'Accesorios', icon:'escritorio', base:44900, count:2}
+  ]},
+  {id:'hogar', name:'Hogar', icon:'escritorio', subs:[
+    {name:'Hogar', icon:'escritorio', base:89900, count:2}
+  ]},
+  {id:'moda', name:'Moda', icon:'teclado', subs:[
+    {name:'Moda', icon:'teclado', base:129900, count:1}
+  ]},
+  {id:'halloween', name:'Halloween', icon:'audio', subs:[
+    {name:'Halloween', icon:'audio', base:129900, count:1}
+  ]},
+  {id:'jugueteria', name:'Juguetería', icon:'gaming', subs:[
+    {name:'Juguetería', icon:'gaming', base:129900, count:1}
   ]}
 ];
 
@@ -121,61 +136,66 @@ let allProducts = generateProducts();
 
 // ==== Productos importados del usuario (placeholders y precios sugeridos) ====
 const userData = [
-  {name:'Soporte Para Portatil Con Ventilador', provider:'GOOTECH', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2218037/6fb2db21-d45e-43ac-8dec-6aa1dc030ebb.jpeg'},
-  {name:'Parlante Inteligente Alexa Radio Bluetooth', provider:'Todonovedad', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2216236/f2812846-6a78-418d-a078-648c4a1f25ce.jpg'},
-  {name:'Teclado Rgb Transparente T10', provider:'Heidy', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2193879/1783354004Image_2026-07-06_11-00-00.png'},
-  {name:'Audifonos Inalambricos Ultra Pods Max', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179267/1781735183FireShot%20Capture%20652%20-%20%20-%20[].png'},
-  {name:'Audifonos Inalambricos M10', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179227/1781734265FireShot%20Capture%20647%20-%20%20-%20[].png'},
-  {name:'Audifonos Inalambricos K11', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179194/1781733318FireShot%20Capture%20642%20-%20%20-%20[].png'},
-  {name:'Mouse Cw905 Pink', provider:'TOTEM TECNOLOGIA', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2176204/17813038091.png'},
-  {name:'Manos Libres Tipo Iphone Original 3.5', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173683/1781111664Screenshot%202026-06-10%20121013.png'},
-  {name:'Cargador Xiaomi V8', provider:'Stom Accesorios', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173681/1781111664Screenshot%202026-06-10%20121013.png'},
-  {name:'Combo Teclado Mouse Kt 988', provider:'Ventas Margarita', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2153844/17792031931746916549625_1746916538703_1746916539285.webp'},
-  {name:'Super Combo Smart Watch airpods Parlante', provider:'One tech', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2149055/1778803193Screenshot%202026-05-30%20121013.png'},
-  {name:'Audifono Gamer Inalambrico Q6s', provider:'Igniz Technology', img:'https://source.unsplash.com/600x600/?gaming,headset,wireless'},
-  {name:'Mouse Gamer M20', provider:'Igniz Technology', img:'https://source.unsplash.com/600x600/?gaming,mouse,computer'},
-  {name:'Lampara Led Proyectora Redonda', provider:'One tech', img:'https://source.unsplash.com/600x600/?desk,lamp,led'},
-  {name:'Combo Diadema Reloj 7 Manillas P9', provider:'One tech', img:'https://source.unsplash.com/600x600/?headset,watch,combo'},
-  {name:'Audifonos Inalambricos I12', provider:'Stom Accesorios', img:'https://source.unsplash.com/600x600/?earbuds,wireless,headphones'},
-  {name:'Smart Watch S1000 Pro 7 Manillas', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,pro'},
-  {name:'Lapiz Optico Universal', provider:'Estrategias tecnológicas redes 11', img:'https://source.unsplash.com/600x600/?stylus,pen,tablet'},
-  {name:'Combo 7 Pulsos Reloj Audifonos D8000', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
-  {name:'Audifonos Inalambricos X30', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?wireless,earphones,headset'},
-  {name:'Smart Watch Redondo Amoled V36', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?smartwatch,amoled,round'},
-  {name:'Audifonos Bluetooth Galaxy Buds Pro 3', provider:'One tech', img:'https://source.unsplash.com/600x600/?galaxy,buds,earphones'},
-  {name:'Rasuradora Geemy 6146', provider:'One tech', img:'https://source.unsplash.com/600x600/?razor,electric,shaver'},
-  {name:'Audifonos Gamer Vsg Shake Alambricos Rgb', provider:'Grupo control', img:'https://source.unsplash.com/600x600/?rgb,headset,gaming'},
-  {name:'Ra022 Mouse Gamer V16 6400dpi', provider:'Commagic', img:'https://source.unsplash.com/600x600/?gaming,mouse,highdpi'},
-  {name:'Audifonos Inalambricos Clipon F50', provider:'DTech Tecnologia', img:'https://source.unsplash.com/600x600/?clipon,earphones,wireless'},
-  {name:'Mouse Ergonomico Recargable', provider:'ONIX TECH', img:'https://source.unsplash.com/600x600/?ergonomic,mouse,computer'},
-  {name:'Teclado Gamer Fantech K613l Sakura Editi', provider:'Grupo GAJ', img:'https://source.unsplash.com/600x600/?pink,keyboard,gaming'},
-  {name:'Teclado Mecanico Gamer Blanco Rgb Switch', provider:'EXONICA SAS', img:'https://source.unsplash.com/600x600/?white,keyboard,rgb'},
-  {name:'Teclado Gamer Mecanico Usb Anti Ghosting', provider:'Cambio Systems', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mechanical'},
-  {name:'Reloj Y Audifonos Combo X8', provider:'One tech', img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
-  {name:'Pad Mouse Gaming Led Negro Antideslizant', provider:'EXONICA SAS', img:'https://source.unsplash.com/600x600/?mousepad,led,black'},
-  {name:'Combo Smart Watch S10 7 Manillas M10', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,combo,watch'},
-  {name:'Combo Teclado Y Mouse Retroiluminado M4', provider:'3 Tiendas SAS', img:'https://source.unsplash.com/600x600/?retro,keyboard,mouse'},
-  {name:'T900s Ultra 2', provider:'TECNO HOGAR (JHONATAN ALONSO)', img:'https://source.unsplash.com/600x600/?smartwatch,ultra'},
-  {name:'Smart Watch T10 Ultra', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,ultra'},
-  {name:'Smart Watch Useultra 18', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch,useultra'},
-  {name:'Parlante Philip Black Days', provider:'One tech', img:'https://source.unsplash.com/600x600/?speaker,black'},
-  {name:'Diaema Tipo Max I13', provider:'Bod-shipping', img:'https://source.unsplash.com/600x600/?earbuds,wireless'},
-  {name:'Jbl Diaema 510 1.1', provider:'Bod-shipping', img:'https://source.unsplash.com/600x600/?jbl,headphones'},
-  {name:'Base Soporte Portatil Plegable Funda', provider:'Grupo GAJ', img:'https://source.unsplash.com/600x600/?laptop,stand,foldable'},
-  {name:'Teclado Y Mouse Gamer Weibo Wb550', provider:'ANDRES', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mouse,combo'},
-  {name:'Smartwatch Inteligente T900 Ultra', provider:'One tech', img:'https://source.unsplash.com/600x600/?smartwatch'} ,
-  {name:'Audifonos Gamer Kotion G2000', provider:'BCOMPANY', img:'https://source.unsplash.com/600x600/?gaming,headset'}
+  {name:'Soporte para Portátil con Ventilador', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2218037/6fb2db21-d45e-43ac-8dec-6aa1dc030ebb.jpeg'},
+  {name:'Parlante Inteligente Alexa Radio Bluetooth', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2216236/f2812846-6a78-418d-a078-648c4a1f25ce.jpg'},
+  {name:'Teclado RGB Transparente T10', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2193879/1783354004Image_2026-07-06_11-00-00.png'},
+  {name:'Audífonos Inalámbricos Ultra Pods Max', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179267/1781735183FireShot%20Capture%20652%20-%20%20-%20[].png'},
+  {name:'Audífonos Inalámbricos M10', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179227/1781734265FireShot%20Capture%20647%20-%20%20-%20[].png'},
+  {name:'Audífonos Inalámbricos K11', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2179194/1781733318FireShot%20Capture%20642%20-%20%20-%20[].png'},
+  {name:'Mouse CW905 Pink', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2176204/17813038091.png'},
+  {name:'Manos Libres Tipo iPhone Original 3.5', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173683/1781111664Screenshot%202026-06-10%20121013.png'},
+  {name:'Cargador Xiaomi V8', img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2173681/1781111664Screenshot%202026-06-10%20121013.png'},
+  {name:'Audífono Gamer Inalámbrico Q6S', img:'https://source.unsplash.com/600x600/?gaming,headset,wireless'},
+  {name:'Mouse Gamer M20', img:'https://source.unsplash.com/600x600/?gaming,mouse,computer'},
+  {name:'Lámpara LED Proyectora Redonda', img:'https://source.unsplash.com/600x600/?desk,lamp,led'},
+  {name:'Brillo Labial Llavero Mágico x2', img:'https://source.unsplash.com/600x600/?lipstick,keychain'},
+  {name:'Teclado Mecánico Weibo WB555', img:'https://source.unsplash.com/600x600/?keyboard,gaming,white'},
+  {name:'Teclado Mecánico 80 Weibo WB666', img:'https://source.unsplash.com/600x600/?keyboard,mechanical,black'},
+  {name:'Pad Mouse Gamer S4000 RGB', img:'https://source.unsplash.com/600x600/?mousepad,rgb,gaming'},
+  {name:'Micrófono Condensador RGB X1S', img:'https://source.unsplash.com/600x600/?microphone,rgb,studio'},
+  {name:'Audífonos Inalámbricos I12', img:'https://source.unsplash.com/600x600/?earbuds,wireless,white'},
+  {name:'Smart Watch S1000 Pro 7 Manillas', img:'https://source.unsplash.com/600x600/?smartwatch,pro'},
+  {name:'Lápiz Óptico Universal', img:'https://source.unsplash.com/600x600/?stylus,tablet'},
+  {name:'Audífonos Inalámbricos X30', img:'https://source.unsplash.com/600x600/?earbuds,wireless,bluetooth'},
+  {name:'Smart Watch Redondo AMOLED V36', img:'https://source.unsplash.com/600x600/?smartwatch,amoled,round'},
+  {name:'Audífonos Bluetooth Galaxy Buds Pro 3', img:'https://source.unsplash.com/600x600/?galaxy,buds,earphones'},
+  {name:'Rasuradora Geemy 6146', img:'https://source.unsplash.com/600x600/?razor,electric,shaver'},
+  {name:'Audífonos Gamer VSG Shake Almábricos RGB', img:'https://source.unsplash.com/600x600/?rgb,headset,gaming'},
+  {name:'Audífonos Inalámbricos Clip-On F50', img:'https://source.unsplash.com/600x600/?clipon,earphones,wireless'},
+  {name:'Mouse Ergonómico Recargable', img:'https://source.unsplash.com/600x600/?ergonomic,mouse,computer'},
+  {name:'Teclado Gamer Fantech K613L Sakura Edition', img:'https://source.unsplash.com/600x600/?pink,keyboard,gaming'},
+  {name:'Audífonos Ambie con Pantalla', img:'https://source.unsplash.com/600x600/?headphones,screen'},
+  {name:'Teclado Mecánico Gamer Blanco RGB Switch', img:'https://source.unsplash.com/600x600/?white,keyboard,rgb'},
+  {name:'Teclado Gamer Mecánico USB Anti-Ghosting', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mechanical'},
+  {name:'Pad Mouse Gaming LED Negro Antideslizante', img:'https://source.unsplash.com/600x600/?mousepad,led,black'},
+  {name:'T900S Ultra 2', img:'https://source.unsplash.com/600x600/?smartwatch,ultra'},
+  {name:'Smart Watch T10 Ultra Ambie sin Pantalla', img:'https://source.unsplash.com/600x600/?smartwatch,screen'},
+  {name:'Smart Watch USE Ultra 18', img:'https://source.unsplash.com/600x600/?smartwatch,useultra'},
+  {name:'Parlante Philip Black Days', img:'https://source.unsplash.com/600x600/?speaker,black'},
+  {name:'Diadema Tipo Max I13', img:'https://source.unsplash.com/600x600/?headset,earbuds'},
+  {name:'JBL Diadema 510 1.1', img:'https://source.unsplash.com/600x600/?jbl,headphones'},
+  {name:'Base Soporte Portátil Plegable con Funda', img:'https://source.unsplash.com/600x600/?laptop,stand,foldable'},
+  {name:'Teclado y Mouse Gamer Weibo WB550', img:'https://source.unsplash.com/600x600/?gaming,keyboard,mouse'},
+  {name:'Smartwatch Inteligente T900 Ultra', img:'https://source.unsplash.com/600x600/?smartwatch'},
+  {name:'Audífonos Gamer Kotion G2000', img:'https://source.unsplash.com/600x600/?gaming,headset'}
 ];
 
 // Combos especiales que no se incluyen en la lista general de catálogo
 const comboItems = [
-  {name:'Combo Gamer M450', provider:'Heidy', price:70000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1644089/1737997010combo-gamer-proyector-consola-m8-leader-store-409396681.png'},
-  {name:'Combo Gamer Proyector Consola M8', provider:'brayan', price:280000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1610077/17355869723.jpg'},
-  {name:'Combo Gamer Retro Iluminado Teclado', provider:'Hepa Tecnología', price:50000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475520/17418855661.jpg'},
-  {name:'Combo Gamer Teclado Con Luces Mouse', provider:'3 Tiendas SAS', price:152000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'},
-  {name:'Combo Gamer Teclado Con Luces Mouse', provider:'3 Tiendas SAS', price:150053, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475522/17418865451.jpg'},
-  {name:'Combo Gamer Teclado Con Luces Mouse', provider:'3 Tiendas SAS', price:151000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/311747/17018829351701882935WhatsApp%20Image%202023-07-07%20at%2010.16.11%20AM%20(3).jpeg'},
-  {name:'Combo Gamer Tigers Tg 700', provider:'Digiprice', price:60000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'}
+  {name:'Combo Teclado Mouse KT988', price:79900, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/2153844/17792031931746916549625_1746916538703_1746916539285.webp'},
+  {name:'Super Combo Smart Watch + AirPods + Parlante', price:249900, img:'https://source.unsplash.com/600x600/?smartwatch,airpods,speaker'},
+  {name:'Combo Diadema + Reloj + 7 Manillas P9', price:159900, img:'https://source.unsplash.com/600x600/?headset,watch,combo'},
+  {name:'Combo Gamer M450', price:70000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1644089/1737997010combo-gamer-proyector-consola-m8-leader-store-409396681.png'},
+  {name:'Combo 7 Pulsos + Reloj + Audífonos D8000', price:169900, img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
+  {name:'Reloj y Audífonos Combo X8', price:179900, img:'https://source.unsplash.com/600x600/?watch,headphones,combo'},
+  {name:'Combo Gamer Proyector Consola M8', price:280000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1610077/17355869723.jpg'},
+  {name:'Combo Gamer Retro Iluminado Teclado', price:50000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475520/17418855661.jpg'},
+  {name:'Combo Smart Watch S10 + 7 Manillas + M10', price:199900, img:'https://source.unsplash.com/600x600/?smartwatch,combo,watch'},
+  {name:'Combo Gamer Teclado con Luces + Mouse', price:152000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'},
+  {name:'Combo Gamer Teclado con Luces + Mouse', price:152000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'},
+  {name:'Combo Gamer Teclado con Luces + Mouse', price:152000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'},
+  {name:'Combo Teclado y Mouse Retroiluminado M4', price:169900, img:'https://source.unsplash.com/600x600/?retro,keyboard,mouse'},
+  {name:'Combo Gamer Tigers TG700', price:60000, img:'https://d39ru7awumhhs2.cloudfront.net/colombia/products/1475521/17418863661.jpg'}
 ];
 
 const guessCategory = (name) => {
@@ -199,7 +219,6 @@ const userProducts = userData.map((item, i) => {
   return {
     id, catId, catName: (catObj && catObj.name) || 'Varios', sub: catObj.subs ? catObj.subs[0].name : 'General',
     icon: catObj.icon || 'escritorio', name: item.name, price, old: null,
-    provider: item.provider || 'Proveedor desconocido',
     rating: (4 + (i%3)*0.1).toFixed(1), reviews: 10 + (i*7)%90, stock: 12, delivery: '3-5 días hábiles', warranty: '12 meses',
     compat: 'Universal', badge: 'nuevo', badgeText:'Nuevo', img
   };
@@ -849,7 +868,7 @@ const offers = [
   ...comboItems.map((combo, idx) => ({
     id: `offer-combo-${idx}`,
     name: combo.name,
-    desc: `Proveedor: ${combo.provider}`,
+    desc: '',
     price: combo.price,
     old: combo.price ? Math.round(combo.price * 1.12 / 100) * 100 : null,
     tag: 'Nuevo',
@@ -877,7 +896,7 @@ const setupData = {
   diadema: [{name:'HyperX Cloud II', price:299900},{name:'JBL Quantum 100', price:189900},{name:'Sony Inzone H3', price:459900}],
   parlante: [{name:'JBL Flip 6', price:499900},{name:'Sony SRS-XB13', price:229900}],
   control: [{name:'Xbox Series X', price:279900},{name:'DualSense PS5', price:319900}],
-  combo: comboItems.map(item => ({name:item.name, price:item.price, provider:item.provider}))
+  combo: comboItems.map(item => ({name:item.name, price:item.price}))
 };
 const tabLabels = {teclado:'Teclado', mouse:'Mouse', diadema:'Diadema', parlante:'Parlante', control:'Control', combo:'Combo'};
 const tabKeys = Object.keys(setupData);
